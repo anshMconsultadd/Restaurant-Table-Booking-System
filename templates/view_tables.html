@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Tables</title>
+</head>
+<body>
+
+<h1>Available Tables</h1>
+
+{% if tables %}
+    <table>
+        <thead>
+            <tr>
+                <th>Table Number</th>
+                <th>Capacity</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for table in tables %}
+                <tr>
+                    <td>{{ table.table_number }}</td>
+                    <td>{{ table.capacity }}</td>
+                    <td>
+                        <!-- Add a reservation button -->
+                        <form action="{{ url_for('reserve_table') }}" method="POST">
+                            <input type="hidden" name="table_id" value="{{ table.id }}">
+                            <button type="submit">Reserve Table</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No available tables at the moment.</p>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - View All Tables</title>
+</head>
+<body>
+    <h1>All Tables</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Table ID</th>
+                <th>Table Number</th>
+                <th>Capacity</th>
+                <th>Reserved</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for table in tables %}
+            <tr>
+                <td>{{ table.id }}</td>
+                <td>{{ table.table_number }}</td>
+                <td>{{ table.capacity }}</td>
+                <td>{{ 'Yes' if table.is_reserved else 'No' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
